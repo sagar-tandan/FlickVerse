@@ -33,7 +33,7 @@ export default function PopularMovies() {
       try {
         const options = {
           method: "GET",
-          url: "https://api.themoviedb.org/3/movie/popular",
+          url: "https://api.themoviedb.org/3/trending/movie/day",
           headers: {
             accept: "application/json",
             Authorization:

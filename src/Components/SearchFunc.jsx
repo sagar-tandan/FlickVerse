@@ -161,7 +161,7 @@ export default function SearchFunc() {
   };
 
   return (
-    <div className="text-white font-poppins text-md flex flex-col">
+    <div className="text-white font-poppins text-md flex flex-col pb-10">
       <div className={`w-full gap-10 sm:justify-between z-20 h-[50px] sm:h-[60px] fixed flex backdrop-blur-sm bg-black/20 shadow-stone-800 shadow-md px-3`}>
         {width > 300 && (
           <Link className="flex gap-1 hover:cursor-pointer" to="/">
@@ -266,7 +266,7 @@ export default function SearchFunc() {
                     Movies
                   </h1>
 
-                  <div className="flex flex-wrap gap-5 sm:gap-10 mt-4 justify-start mx-4 items-center">
+                  <div className="flex flex-wrap gap-5 sm:gap-10 mt-4 justify-center mx-4 items-center">
                     {nowPlaying.map((movie) => (
                       <a
                         href={`/${movie.title}`}
@@ -301,7 +301,7 @@ export default function SearchFunc() {
                     Series
                   </h1>
 
-                  <div className="flex flex-wrap gap-5 sm:gap-10 mt-4 justify-start mx-4 items-center">
+                  <div className="flex flex-wrap gap-5 sm:gap-10 mt-4 justify-center mx-4 items-center">
                     {tvShows.map((movie) => (
                       <a
                         href={`/${movie.original_name}`}

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { getMovieDetailsAndCredits } from "../Components/getMovieDetailsAndCredits";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import SimilarMovies from "../MainComps/SimilarMovies.jsx";
+import Header from "../Components/Headers/Header2.jsx";
 
 import star from "../assets/Icons/star.png";
 import Recommendation from "../MainComps/Recommendation.jsx";
@@ -74,10 +75,12 @@ export default function MovieDetail() {
         />
 
         <div
-          className="flex flex-col gap-5 bg-[#0c0c0c] absolute top-0 left-0 right-0 w-full h-full bg-opacity-85 overflow-y-scroll"
+          id="top"
+          className="flex flex-col gap-5 bg-[#0c0c0c] absolute top-0 left-0 right-0 w-full h-full bg-opacity-85 overflow-y-scroll pb-10"
         >
+          <Header />
           {/* Movie detail */}
-          <div  id="top" className="flex flex-col gap-3 text-white font-poppins w-full md:w-[80%] lg:w-[80%] xl:w-[60%] p-6 sm:p-10">
+          <div className="flex flex-col gap-3 text-white font-poppins w-full md:w-[80%] lg:w-[80%] xl:w-[60%] p-6 sm:p-10 mt-[50px] sm:mt-[60px]">
             <h1 className="font-poppins font-bold tracking-widest text-xl sm:text-3xl mt-2 uppercase">
               {title}
             </h1>

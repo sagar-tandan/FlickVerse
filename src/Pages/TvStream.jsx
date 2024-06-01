@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import tips from "../assets/Icons/tips.png";
 import axios from "axios";
 import "../Components/TVSeries/style.css";
 import BeatLoader from "react-spinners/BeatLoader";
+import Header from '../Components/Headers/Header3.jsx'
 
 export default function MovieStream() {
   const location = useLocation();
@@ -89,7 +90,8 @@ export default function MovieStream() {
     <>
       {/* <div className="relative max-w-screen-5xl h-screen flex justify-center items-center overflow-hidden mx-auto"> */}
       <div className="flex flex-col gap-5 bg-[#0c0c0c] absolute top-0 left-0 right-0 w-full h-full bg-opacity-85 overflow-y-scroll scroll-smooth">
-        <div className="flex flex-col lg:flex-row gap-4 text-white font-poppins w-full p-4 mb-20">
+        <Header />
+        <div className="flex flex-col lg:flex-row gap-4 text-white font-poppins w-full p-4 mb-20 mt-[50px] sm:mt-[60px]">
           <div className="flex flex-col w-full lg:w-[80%]">
             <div className="flex flex-row m-2 gap-3 flex-wrap">
               <div

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import tips from "../assets/Icons/tips.png";
 import { Link } from "react-router-dom";
+import Header from '../Components/Headers/Header2.jsx'
 
 export default function MovieStream() {
   const location = useLocation();
@@ -16,7 +17,8 @@ export default function MovieStream() {
     <>
       {/* <div className="relative max-w-screen-5xl h-screen flex justify-center items-center overflow-hidden mx-auto"> */}
       <div className="flex flex-col gap-5 bg-[#0c0c0c] absolute top-0 left-0 right-0 w-full h-full bg-opacity-85 overflow-y-scroll scroll-smooth">
-        <div className="flex flex-col gap-3 text-white font-poppins w-full p-4 mb-20">
+        <Header/>
+        <div className="flex flex-col gap-3 text-white font-poppins w-full p-4 mb-20 mt-[50px] sm:mt-[60px]">
           <div className="flex flex-row m-2 gap-3 flex-wrap">
             <div
               onClick={() => {

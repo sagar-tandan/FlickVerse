@@ -22,7 +22,7 @@ export default function OntheAir() {
       try {
         const options = {
           method: "GET",
-          url: "https://api.themoviedb.org/3/tv/on_the_air",
+          url: "https://api.themoviedb.org/3/trending/tv/day",
           params: { language: "en-US", page: "1" },
           headers: {
             accept: "application/json",
@@ -81,7 +81,7 @@ export default function OntheAir() {
       ) : (
         <div className="flex flex-col">
           <h1 className="px-4 sm:px-10 mt-3 font-semibold text-sm sm:text-xl ">
-            Series - On the Air
+            Series - Trending
           </h1>
 
           <div className="flex">
