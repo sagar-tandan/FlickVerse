@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import tips from "../assets/Icons/tips.png";
+import { Link } from "react-router-dom";
 
 export default function MovieStream() {
   const location = useLocation();
@@ -10,7 +11,6 @@ export default function MovieStream() {
   const [server, setServer] = useState("server1");
 
   // console.log(location.state);
-
 
   return (
     <>
@@ -77,14 +77,14 @@ export default function MovieStream() {
           </div>
           <div className="flex gap-1 items-center justify-start mt-3">
             <img className="w-5 h-5 p-[2px]" src={tips} alt="" />
-            <span className="text-sm font-poppins font-extralight">
-              Need tips to stream the movie Uninterrupted ?
-            </span>
-            <a href="/guide">
-              <span className="hover:cursor-pointer hover:text-blue-600 font-poppins font-medium text-sm transition-all ease-in-out duration-200">
-                Click here!
-              </span>
-            </a>
+            <p className="text-sm font-poppins font-extralight">
+              Need tips to stream the movie Uninterrupted ?  
+              <Link to="/flick">
+                <span className="hover:cursor-pointer hover:text-blue-600 font-poppins font-medium text-sm transition-all ease-in-out duration-200 ml-[2px]">
+                  Click here!
+                </span>
+              </Link>
+            </p>
           </div>
 
           <div className="w-full overflow-y-auto h-[60vh] sm:h-[85vh] mt-4">

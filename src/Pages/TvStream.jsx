@@ -29,12 +29,7 @@ export default function MovieStream() {
 
   const [count, setCount] = useState(1);
 
-  // Function to handle season selection change
-  // const handleSeasonChange = (event) => {
-  //   const seasonNumber = parseInt(event.target.value);
-  //   setSelectedSeason(seasonNumber);
-  //   setENo(1);
-  // };
+
 
   const handleSeason = (event) => {
     const newCount = count + 1;
@@ -166,14 +161,14 @@ export default function MovieStream() {
             </div>
             <div className="flex gap-1 items-center justify-start mt-3">
               <img className="w-5 h-5 p-[2px]" src={tips} alt="" />
-              <span className="text-sm font-poppins font-extralight">
-                Need tips to stream the Tv Series Uninterrupted ?
-              </span>
-              <a href="/guide">
-                <span className="hover:cursor-pointer hover:text-blue-600 font-poppins font-medium text-sm transition-all ease-in-out duration-200">
+              <p className="text-sm font-poppins font-extralight">
+              Need tips to stream the movie Uninterrupted ?  
+              <Link to="/flick">
+                <span className="hover:cursor-pointer hover:text-blue-600 font-poppins font-medium text-sm transition-all ease-in-out duration-200 ml-[2px]">
                   Click here!
                 </span>
-              </a>
+              </Link>
+            </p>
             </div>
 
             <div className="w-full overflow-y-auto h-[60vh] sm:h-[85vh] mt-4">
