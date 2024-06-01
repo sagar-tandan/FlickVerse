@@ -93,7 +93,7 @@ export default function PopularMovies() {
           <div className="relative w-full h-[350px] xl:h-[400px] 2xl:h-[500px] 3xl:h-[600px]">
             <img
               className="w-full h-[350px] xl:h-[400px] 2xl:h-[500px] 3xl:h-[600px] rounded brightness-[30%] object-cover"
-              src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+              src={`https://image.tmdb.org/t/p/${width > 780 ? "original": "w780"}${movie.backdrop_path}`}
               alt=""
             />
             <div className="absolute flex flex-row top-0 bottom-0 left-0 right-0">
