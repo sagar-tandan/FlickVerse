@@ -139,7 +139,7 @@ export default function PopularMovies() {
                 )}
 
                 <a
-                  className="bg-blue-500 w-[50%] sm:w-[50%] xl:w-[25%] text-white py-2 sm:py-3 2xl:py-4 px-4 rounded-xl mt-2 sm:mt-5 hover:bg-blue-700 hover:text-yellow-400 transition-all duration-300 ease-in-out active:scale-95 xl:text-2xl"
+                  className="bg-blue-500 w-[50%] sm:w-[50%] 2xl:w-[30%] text-white py-2 sm:py-3 2xl:py-4 px-4 rounded-xl mt-2 sm:mt-5 hover:bg-blue-700 hover:text-yellow-400 transition-all duration-300 ease-in-out active:scale-95 xl:text-2xl"
                   href={`/${movie.title}`}
                   onClick={(event) => handleLinkClick(movie, event)}
                 >
