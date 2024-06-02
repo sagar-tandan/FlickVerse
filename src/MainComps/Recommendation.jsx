@@ -7,6 +7,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 import prev from "../assets/Icons/prev.png";
 import next from "../assets/Icons/next.png";
+import notF from "../assets/4044.png";
 
 export default function Recommendation({ id }) {
   const sliderRef = useRef(null);
@@ -112,11 +113,19 @@ export default function Recommendation({ id }) {
                         key={item.id}
                         className="rounded-xl w-auto h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden flex-shrink-0"
                       >
-                        <MovieCard
-                          key={item.id}
-                          url={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
-                          title={item.title}
-                        />
+                        {item.poster_path ? (
+                          <MovieCard
+                            key={item.id}
+                            url={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+                            title={item.title}
+                          />
+                        ) : (
+                          <MovieCard
+                            key={item.id}
+                            url={notF}
+                            title={item.title}
+                          />
+                        )}
                       </div>
                     </a>
                   ))}

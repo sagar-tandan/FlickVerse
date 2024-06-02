@@ -8,7 +8,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 import { Link, useNavigate } from "react-router-dom";
 
-export default function NowPlaying() {
+export default function HindiNowPlaying() {
   const sliderRef = useRef(null);
   const scrollAmount = window.innerWidth;
   const [nowPlaying, setNowPlaying] = useState([]);
@@ -22,7 +22,7 @@ export default function NowPlaying() {
       try {
         const options = {
           method: "GET",
-          url: "https://api.themoviedb.org/3/movie/now_playing",
+          url: "https://api.themoviedb.org/3/discover/movie",
           headers: {
             accept: "application/json",
             Authorization:
@@ -31,6 +31,9 @@ export default function NowPlaying() {
           params: {
             language: "en-US",
             page: 1,
+            sort_by: "popularity.desc",
+
+            with_original_language: "hi",
           },
         };
         await axios
@@ -84,7 +87,7 @@ export default function NowPlaying() {
       ) : (
         <div className="flex flex-col">
           <h1 className="px-4 sm:px-10 mt-3 font-semibold text-sm sm:text-xl ">
-            Now Playing
+            Popular - Bollywood
           </h1>
           <div className="flex">
             <div className="justify-center items-center rounded-md w-[25px] h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] my-4 mx-1 hidden sm:flex">

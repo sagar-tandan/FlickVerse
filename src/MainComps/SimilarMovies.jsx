@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import MovieCard from "../Components/MovieCard";
 import BeatLoader from "react-spinners/BeatLoader";
+import notF from '../assets/4044.png'
 
 import { useNavigate } from "react-router-dom";
 
@@ -75,8 +76,8 @@ export default function SimilarMovies({ id, tits }) {
     <>
       {loading ? (
         <div className="flex justify-center items-center mx-auto my-4">
-        <BeatLoader color="#ffffff" />
-      </div>
+          <BeatLoader color="#ffffff" />
+        </div>
       ) : (
         <div>
           {similar.length > 0 && (
@@ -84,7 +85,8 @@ export default function SimilarMovies({ id, tits }) {
               <div className="font-poppins font-semibold text-white text-lg sm:text-xl tracking-wide px-3 sm:px-10">
                 <h1 className="inline-block sm:hidden">Similar Movies</h1>
                 <h1 className="hidden sm:inline-block truncate ...">
-                  Because you are watching <span className="text-orange-600">{tits}</span>
+                  Because you are watching{" "}
+                  <span className="text-orange-600">{tits}</span>
                 </h1>
               </div>
               <div className="flex px-3">
@@ -111,11 +113,19 @@ export default function SimilarMovies({ id, tits }) {
                         key={item.id}
                         className="rounded-xl w-auto h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden flex-shrink-0"
                       >
-                        <MovieCard
-                          key={item.id}
-                          url={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
-                          title={item.title}
-                        />
+                        {item.poster_path ? (
+                          <MovieCard
+                            key={item.id}
+                            url={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+                            title={item.title}
+                          />
+                        ) : (
+                          <MovieCard
+                            key={item.id}
+                            url={notF}
+                            title={item.title}
+                          />
+                        )}
                       </div>
                     </a>
                   ))}

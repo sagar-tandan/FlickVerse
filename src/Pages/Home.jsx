@@ -5,6 +5,7 @@ import TopRated from "../MainComps/TopRated.jsx";
 import OntheAir from "../MainComps/TV/OntheAir.jsx";
 import TvPopular from "../MainComps/TV/TvPopular.jsx";
 import NavBar from '../Components/Headers/NavBar1.jsx'
+import HindiNowPlaying from "../MainComps/HindiNowPlaying.jsx";
 
 export default function Home() {
   return (
@@ -18,6 +19,9 @@ export default function Home() {
 
       <div className="flex flex-col px-5">
         <OntheAir />
+      </div>
+      <div className="flex flex-col px-5">
+        <HindiNowPlaying />
       </div>
 
       <div className="flex flex-col px-5">
