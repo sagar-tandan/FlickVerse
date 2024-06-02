@@ -153,14 +153,14 @@ export default function AllMovies() {
               selectedGenre == genre.id
                 ? "border-blue-500 bg-blue-500"
                 : "border-[0.5px]"
-            } px-3 py-[2px] font-poppins font-light rounded-full hover:cursor-pointer hover:bg-blue-500 hover:border-blue-500 active:scale-95 transition-all ease-in-out duration-300 flex items-center justify-center`}
+            } px-2 sm:px-3 py-[2px] font-poppins font-light text-sm rounded-full hover:cursor-pointer hover:bg-blue-500 hover:border-blue-500 active:scale-95 transition-all ease-in-out duration-300 flex items-center justify-center`}
           >
             {genre.name}
           </div>
         ))}
       </div>
       {loading && page === 1 ? (
-        <div className="flex justify-center items-center mx-auto my-4 w-full h-[70vh]">
+        <div className="flex justify-center items-center mx-auto my-4 w-full h-[30vh] sm:h-[70vh]">
           <BeatLoader color="#ffffff" />
         </div>
       ) : (
