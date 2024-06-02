@@ -1,39 +1,67 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import notF from "../assets/4044.png";
 import axios from "axios";
-import MovieCard from "../Components/MovieCard.jsx";
 import AllMovieCard from "../Components/AllMovieCard.jsx";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useNavigate } from "react-router-dom";
+import Header from "../Components/Headers/Header3.jsx";
 import NavBar from "../Components/Headers/NavBar3.jsx";
 
-import Header from "../Components/Headers/Header3.jsx";
-
-export default function AllShows() {
-  const [tvpop, setTvPop] = useState([]);
+export default function AllMovies() {
+  const [allMovies, setAllMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState("10759");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [moreLoading, setMoreLoading] = useState(false);
 
-  const navigate = useNavigate(); // Ensure navigate is defined
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const FetchData = async () => {
+    const fetchMovies = async () => {
       setLoading(true);
-
       try {
-        const options = {
-          method: "GET",
-          url: "https://api.themoviedb.org/3/tv/popular",
-          params: { language: "en-US", page: page },
-          headers: {
-            accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZmUxMGI4YTZiNmUxMTQ4MTFjMGNlZTU0YzQ4ZTA5NCIsInN1YiI6IjY2NDk1NTRiNDRlYjRmNmQwYTkyY2E5YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uVXa_n6NgfHnh5OJaRU-fr4eeNBgib47eIpb1palLBU",
-          },
+        const fetchMoviesByLanguage = async (language) => {
+          const options = {
+            method: "GET",
+            url: "https://api.themoviedb.org/3/discover/tv",
+            headers: {
+              accept: "application/json",
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZmUxMGI4YTZiNmUxMTQ4MTFjMGNlZTU0YzQ4ZTA5NCIsInN1YiI6IjY2NDk1NTRiNDRlYjRmNmQwYTkyY2E5YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uVXa_n6NgfHnh5OJaRU-fr4eeNBgib47eIpb1palLBU",
+            },
+            params: {
+              language: "en-US",
+              page: page,
+              sort_by: "popularity.desc",
+              with_genres: selectedGenre,
+              with_original_language: language,
+            },
+          };
+
+          const response = await axios.request(options);
+          return response.data.results;
         };
-        const response = await axios.request(options);
-        setTvPop((prevMovies) => [...prevMovies, ...response.data.results]);
+
+        const [hindiMovies, englishMovies] = await Promise.all([
+          fetchMoviesByLanguage("hi"),
+          fetchMoviesByLanguage("en"),
+        ]);
+
+        const combinedMovies = [...englishMovies, ...hindiMovies];
+        const uniqueMovies = combinedMovies.filter(
+          (movie, index, self) =>
+            index === self.findIndex((m) => m.id === movie.id)
+        );
+
+        setAllMovies((prevMovies) => {
+          const existingMovieIds = new Set(prevMovies.map((movie) => movie.id));
+          const newUniqueMovies = uniqueMovies.filter(
+            (movie) => !existingMovieIds.has(movie.id)
+          );
+          return [...prevMovies, ...newUniqueMovies];
+        });
+
         setLoading(false);
         setMoreLoading(false);
       } catch (error) {
@@ -43,8 +71,35 @@ export default function AllShows() {
       }
     };
 
-    FetchData();
-  }, [page]);
+    fetchMovies();
+  }, [page, selectedGenre]);
+
+  useEffect(() => {
+    const fetchGenres = async () => {
+      setLoading(true);
+      try {
+        const options = {
+          method: "GET",
+          url: "https://api.themoviedb.org/3/genre/tv/list",
+          params: { language: "en" },
+          headers: {
+            accept: "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZmUxMGI4YTZiNmUxMTQ4MTFjMGNlZTU0YzQ4ZTA5NCIsInN1YiI6IjY2NDk1NTRiNDRlYjRmNmQwYTkyY2E5YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uVXa_n6NgfHnh5OJaRU-fr4eeNBgib47eIpb1palLBU",
+          },
+        };
+
+        const response = await axios.request(options);
+        setGenres(response.data.genres);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    };
+
+    fetchGenres();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,50 +133,68 @@ export default function AllShows() {
     }, 300);
   };
 
+  const changeGenre = (genreId) => {
+    setSelectedGenre(genreId);
+    setPage(1);
+    setAllMovies([]);
+    console.log(selectedGenre);
+  };
+
   return (
-    <div className="text-white font-poppins text-md flex flex-col tracking-wider">
+    <div className="text-white font-poppins text-md flex flex-col tracking-wider ">
       <Header />
       <NavBar />
+      <div className="flex text-white flex-wrap mx-4 lg:mx-16 mb-5 gap-3  mt-[60px] sm:mt-[70px]">
+        {genres.map((genre) => (
+          <div
+            key={genre.id}
+            onClick={() => changeGenre(genre.id)}
+            className={`${
+              selectedGenre == genre.id
+                ? "border-blue-500 bg-blue-500"
+                : "border-[0.5px]"
+            } px-3 py-[2px] font-poppins font-light rounded-full hover:cursor-pointer hover:bg-blue-500 hover:border-blue-500 active:scale-95 transition-all ease-in-out duration-300 flex items-center justify-center`}
+          >
+            {genre.name}
+          </div>
+        ))}
+      </div>
       {loading && page === 1 ? (
         <div className="flex justify-center items-center mx-auto my-4 w-full h-[70vh]">
           <BeatLoader color="#ffffff" />
         </div>
       ) : (
-        <div>
-          {tvpop.length > 0 && (
-            <div>
-              <div className="flex flex-wrap gap-3 sm:gap-6 mt-[60px] sm:mt-[70px] justify-center mx-4 items-center">
-                {tvpop.map((movie) => (
-                  <a
-                    key={movie.id}
-                    href={`/tv/${movie.original_name}`}
-                    onClick={(event) => handleLinkClick(movie, event)}
-                  >
-                    {movie.poster_path === null ? (
-                      <div className="rounded-xl w-auto h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden">
-                        <MovieCard
-                          key={movie.id}
-                          url={notF}
-                          title={movie.original_name}
-                        />
-                      </div>
-                    ) : (
-                      <div className="rounded-xl w-auto h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden">
-                        <AllMovieCard
-                          key={movie.id}
-                          url={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
-                          title={movie.original_name}
-                        />
-                      </div>
-                    )}
-                  </a>
-                ))}
-              </div>
-              {moreLoading && (
-                <div className="flex justify-center items-center mx-auto my-4 w-full">
-                  <BeatLoader color="#ffffff" />
-                </div>
-              )}
+        <div className="flex flex-col">
+          <div className="flex flex-wrap gap-3 sm:gap-6 justify-center mx-4 items-center">
+            {allMovies.map((movie) => (
+              <a
+                key={movie.id}
+                href={`/${movie.title}`}
+                onClick={(event) => handleLinkClick(movie, event)}
+              >
+                {movie.poster_path === null ? (
+                  <div className="rounded-xl w-auto h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden">
+                    <AllMovieCard
+                      key={movie.id}
+                      url={notF}
+                      title={movie.title}
+                    />
+                  </div>
+                ) : (
+                  <div className="rounded-xl w-auto h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden">
+                    <AllMovieCard
+                      key={movie.id}
+                      url={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
+                      title={movie.title}
+                    />
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+          {moreLoading && (
+            <div className="flex justify-center items-center mx-auto my-4 w-full">
+              <BeatLoader color="#ffffff" />
             </div>
           )}
         </div>

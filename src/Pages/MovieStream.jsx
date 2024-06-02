@@ -89,7 +89,7 @@ export default function MovieStream() {
             </p>
           </div>
 
-          <div className="w-full overflow-y-auto h-[60vh] sm:h-[85vh] mt-4">
+          <div className="w-full overflow-y-auto h-[60vh] sm:h-[85vh] mt-4 border-[0.5px] border-gray-900">
             <iframe
               className="w-full h-full"
               src={ID}
