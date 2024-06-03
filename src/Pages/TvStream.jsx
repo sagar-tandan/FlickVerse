@@ -4,11 +4,11 @@ import tips from "../assets/Icons/tips.png";
 import axios from "axios";
 import "../Components/TVSeries/style.css";
 import BeatLoader from "react-spinners/BeatLoader";
-import Header from '../Components/Headers/Header3.jsx'
+import Header from "../Components/Headers/Header3.jsx";
 
 export default function MovieStream() {
   const location = useLocation();
-  const { id, id2, season } = location.state;
+  const { id2, season } = location.state;
   const [seasons, setSeasons] = useState(season);
   const [mainID, setMainID] = useState(id2);
   const [server, setServer] = useState("server1");
@@ -17,8 +17,11 @@ export default function MovieStream() {
   const [episodes, setEpisodes] = useState([]);
   const [eNo, setENo] = useState(1);
 
-  const [ID, setID] = useState(`https://moviesapi.club/tv/${mainID}-${selectedSeason}-${eNo}`);
+  const [loadingID, setLoadingID] = useState(false);
 
+  const [ID, setID] = useState(
+    `${import.meta.env.VITE_APP_Link_1}${mainID}-${selectedSeason}-${eNo}`
+  );
 
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(false);
@@ -29,8 +32,6 @@ export default function MovieStream() {
   // console.log(eNo);
 
   const [count, setCount] = useState(1);
-
-
 
   const handleSeason = (event) => {
     const newCount = count + 1;
@@ -51,8 +52,7 @@ export default function MovieStream() {
           url: `https://api.themoviedb.org/3/tv/${mainID}/season/${selectedSeason}`,
           headers: {
             accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZmUxMGI4YTZiNmUxMTQ4MTFjMGNlZTU0YzQ4ZTA5NCIsInN1YiI6IjY2NDk1NTRiNDRlYjRmNmQwYTkyY2E5YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uVXa_n6NgfHnh5OJaRU-fr4eeNBgib47eIpb1palLBU",
+            Authorization: import.meta.env.VITE_APP_API_KEY,
           },
           params: {
             language: "en-US",
@@ -73,17 +73,33 @@ export default function MovieStream() {
   }, [selectedSeason]);
 
   useEffect(() => {
+    setLoadingID(true);
     {
       server === "server1"
-        ? setID(`https://moviesapi.club/tv/${mainID}-${selectedSeason}-${eNo}`)
+        ? setID(
+            `${
+              import.meta.env.VITE_APP_Link_1
+            }${mainID}-${selectedSeason}-${eNo}`
+          )
         : server === "server2"
-        ? `https://www.2embed.cc/embedtv/${mainID}&s=${selectedSeason}&e=${eNo}`
+        ? setID(
+            `${
+              import.meta.env.VITE_APP_Link_2
+            }${mainID}&s=${selectedSeason}&e=${eNo}`
+          )
         : server === "server3"
-        ? `https://multiembed.mov/?video_id=${mainID}&tmdb=1&s=${selectedSeason}&e=${eNo}`
-        : // : server === "server4"
-          // ? `https://player.smashy.stream/tv/${mainID}&s=${selectedSeason}&e=${eNo}`
-          `https://vidsrc.pro/embed/tv/${mainID}&s=${selectedSeason}&e=${eNo}`;
+        ? setID(
+            `${
+              import.meta.env.VITE_APP_Link_3
+            }${mainID}&tmdb=1&s=${selectedSeason}&e=${eNo}`
+          )
+        : setID(
+            `${
+              import.meta.env.VITE_APP_Link_4
+            }${mainID}/${selectedSeason}/${eNo}`
+          );
     }
+    setLoadingID(false)
   }, [eNo, selectedSeason]);
 
   return (
@@ -97,7 +113,9 @@ export default function MovieStream() {
               <div
                 onClick={() => {
                   setID(
-                    `https://moviesapi.club/tv/${mainID}-${selectedSeason}-${eNo}`
+                    `${
+                      import.meta.env.VITE_APP_Link_1
+                    }${mainID}-${selectedSeason}-${eNo}`
                   );
                   setServer("server1");
                 }}
@@ -110,7 +128,9 @@ export default function MovieStream() {
               <div
                 onClick={() => {
                   setID(
-                    `https://www.2embed.cc/embedtv/${mainID}&s=${selectedSeason}&e=${eNo}`
+                    `${
+                      import.meta.env.VITE_APP_Link_2
+                    }${mainID}&s=${selectedSeason}&e=${eNo}`
                   );
                   setServer("server2");
                 }}
@@ -124,7 +144,9 @@ export default function MovieStream() {
               <div
                 onClick={() => {
                   setID(
-                    `https://multiembed.mov/?video_id=${mainID}&tmdb=1&s=${selectedSeason}&e=${eNo}`
+                    `${
+                      import.meta.env.VITE_APP_Link_3
+                    }${mainID}&tmdb=1&s=${selectedSeason}&e=${eNo}`
                   );
                   setServer("server3");
                 }}
@@ -134,23 +156,13 @@ export default function MovieStream() {
               >
                 Server 3
               </div>
-              {/* <div
-              onClick={() => {
-                setID(
-                  `https://player.smashy.stream/tv/${mainID}&s=${selectedSeason}&e=${eNo}`
-                );
-                setServer("server4");
-              }}
-              className={`border-[#454545] border-[1px] px-3 py-1 sm:py-2 rounded  hover:bg-opacity-80 hover:cursor-pointer transition-all ease-in-out ${
-                server == "server4" ? "bg-blue-600" : "bg-[#2b2b2b]"
-              } `}
-            >
-              Server 4
-            </div> */}
+
               <div
                 onClick={() => {
                   setID(
-                    `https://vidsrc.pro/embed/tv/${mainID}/${selectedSeason}/${eNo}`
+                    `${
+                      import.meta.env.VITE_APP_Link_4
+                    }${mainID}/${selectedSeason}/${eNo}`
                   );
                   setServer("server5");
                 }}
@@ -164,46 +176,31 @@ export default function MovieStream() {
             <div className="flex gap-1 items-center justify-start mt-3">
               <img className="w-5 h-5 p-[2px]" src={tips} alt="" />
               <p className="text-sm font-poppins font-extralight">
-              Need tips to stream the movie Uninterrupted ?  
-              <Link to="/flick">
-                <span className="hover:cursor-pointer hover:text-blue-600 font-poppins font-medium text-sm transition-all ease-in-out duration-200 ml-[2px]">
-                  Click here!
-                </span>
-              </Link>
-            </p>
+                Need tips to stream the movie Uninterrupted ?
+                <Link to="/flick">
+                  <span className="hover:cursor-pointer hover:text-blue-600 font-poppins font-medium text-sm transition-all ease-in-out duration-200 ml-[2px]">
+                    Click here!
+                  </span>
+                </Link>
+              </p>
             </div>
 
             <div className="w-full overflow-y-auto h-[60vh] sm:h-[85vh] mt-4">
-              <iframe
-                className="w-full h-full"
-                src={ID}
-                title="Streaming content"
-                allowFullScreen={true}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="allow-scripts allow-same-origin"
-              ></iframe>
+              {!loadingID && (
+                <iframe
+                  className="w-full h-full"
+                  src={ID}
+                  title="Streaming content"
+                  allowFullScreen={true}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="allow-scripts allow-same-origin"
+                ></iframe>
+              )}
             </div>
           </div>
 
           <div className="w-full lg:w-[30%] flex flex-col mt-4 bg-[#373737] lg:mt-24 px-4 rounded-3xl">
             <div className="relative w-full p-2 mt-3">
-              {/* <select
-                className="bg-transparent w-full outline-none"
-                value={selectedSeason}
-                onChange={handleSeasonChange}
-              >
-                {seasons.map((item, index) => (
-                  <option
-                    key={index}
-                    value={item.season_number}
-                    className="bg-blue-800 overflow-y-scroll scrollbar-custom"
-                    style={{ height: "50px" }}
-                  >
-                    {item.name}
-                  </option>
-                ))}
-              </select> */}
-
               <div
                 onClick={handleSeason}
                 className=" w-full bg-blue-600 rounded-full py-2 flex justify-between items-center hover:cursor-pointer px-2"

@@ -150,7 +150,7 @@ export default function MovieDetail() {
                   className="w-[80%] sm:w-full mx-auto flex justify-center items-center bg-blue-600 text-sm sm:text-lg font-medium py-2 px-3 sm:px-6 rounded-full opacity-100 hover:bg-blue-800 transition-all ease-in-out duration-300 active:scale-[105%] hover:text-yellow-400"
                   onClick={(event) =>
                     handleLinkClick(
-                      `https://www.2embed.cc/embed/${id}`,
+                      `${import.meta.env.VITE_APP_Link_5}${id}`,
                       id,
                       event
                     )

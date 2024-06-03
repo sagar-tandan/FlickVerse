@@ -22,7 +22,7 @@ export default function MovieStream() {
           <div className="flex flex-row m-2 gap-3 flex-wrap">
             <div
               onClick={() => {
-                setID(`https://www.2embed.cc/embed/${mainID}`);
+                setID(`${import.meta.env.VITE_APP_Link_5}${mainID}`);
                 setServer("server1");
               }}
               className={`border-[#454545] border-[1px] px-3 py-1 sm:py-2 rounded  hover:bg-opacity-80 hover:cursor-pointer transition-all ease-in-out ${
@@ -33,7 +33,7 @@ export default function MovieStream() {
             </div>
             <div
               onClick={() => {
-                setID(`https://moviesapi.club/movie/${mainID}`);
+                setID(`${import.meta.env.VITE_APP_Link_6}${mainID}`);
                 setServer("server2");
               }}
               className={`border-[#454545] border-[1px] px-3 py-1 sm:py-2 rounded  hover:bg-opacity-80 hover:cursor-pointer transition-all ease-in-out ${
@@ -45,7 +45,7 @@ export default function MovieStream() {
 
             <div
               onClick={() => {
-                setID(`https://multiembed.mov/?video_id=${mainID}&tmdb=1`);
+                setID(`${import.meta.env.VITE_APP_Link_7}${mainID}&tmdb=1`);
                 setServer("server3");
               }}
               className={`border-[#454545] border-[1px] px-3 py-1 sm:py-2 rounded  hover:bg-opacity-80 hover:cursor-pointer transition-all ease-in-out ${
@@ -56,7 +56,7 @@ export default function MovieStream() {
             </div>
             <div
               onClick={() => {
-                setID(`https://player.smashy.stream/movie/${mainID}`);
+                setID(`${import.meta.env.VITE_APP_Link_8}${mainID}`);
                 setServer("server4");
               }}
               className={`border-[#454545] border-[1px] px-3 py-1 sm:py-2 rounded  hover:bg-opacity-80 hover:cursor-pointer transition-all ease-in-out ${
@@ -67,7 +67,7 @@ export default function MovieStream() {
             </div>
             <div
               onClick={() => {
-                setID(`https://vidsrc.pro/embed/movie/${mainID}`);
+                setID(`${import.meta.env.VITE_APP_Link_9}${mainID}`);
                 setServer("server5");
               }}
               className={`border-[#454545] border-[1px] px-3 py-1 sm:py-2 rounded  hover:bg-opacity-80 hover:cursor-pointer transition-all ease-in-out ${

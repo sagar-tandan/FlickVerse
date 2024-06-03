@@ -51,12 +51,11 @@ export default function TvDetail() {
   const cast = cred?.cast?.slice(0, 3).map((member) => member.name);
   const dir = details?.created_by?.slice(0, 1).map((member) => member.name);
 
-  const handleLinkClick = (ids, mainId, seasons, event) => {
+  const handleLinkClick = ( mainId, seasons, event) => {
     event.preventDefault();
     setTimeout(() => {
       navigate(`/tv/${title}/${mainId}`, {
         state: {
-          id: ids,
           id2: mainId,
           season: seasons,
         },
@@ -181,7 +180,6 @@ export default function TvDetail() {
                   className="w-[80%] sm:w-full mx-auto flex justify-center items-center bg-blue-600 text-sm sm:text-lg font-medium py-2 px-3 sm:px-6 rounded-full opacity-100 hover:bg-blue-800 transition-all ease-in-out duration-300 active:scale-[105%] hover:text-yellow-400"
                   onClick={(event) =>
                     handleLinkClick(
-                      `https://www.2embed.cc/embedtv/${id}&s=1&e=1`,
                       id,
                       seasons,
                       event

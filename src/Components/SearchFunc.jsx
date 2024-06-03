@@ -85,9 +85,9 @@ export default function SearchFunc() {
           url: `https://api.themoviedb.org/3/search/movie?query=${searchTerm}`,
           headers: {
             accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZmUxMGI4YTZiNmUxMTQ4MTFjMGNlZTU0YzQ4ZTA5NCIsInN1YiI6IjY2NDk1NTRiNDRlYjRmNmQwYTkyY2E5YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uVXa_n6NgfHnh5OJaRU-fr4eeNBgib47eIpb1palLBU",
+            Authorization: import.meta.env.VITE_APP_API_KEY,
           },
+
           params: {
             language: "en-US",
             page: 1,
@@ -99,8 +99,7 @@ export default function SearchFunc() {
           url: `https://api.themoviedb.org/3/search/tv?query=${searchTerm}`,
           headers: {
             accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZmUxMGI4YTZiNmUxMTQ4MTFjMGNlZTU0YzQ4ZTA5NCIsInN1YiI6IjY2NDk1NTRiNDRlYjRmNmQwYTkyY2E5YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uVXa_n6NgfHnh5OJaRU-fr4eeNBgib47eIpb1palLBU",
+            Authorization: import.meta.env.VITE_APP_API_KEY,
           },
           params: {
             language: "en-US",
@@ -215,7 +214,10 @@ export default function SearchFunc() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div onClick={()=>setSearchTerm('')} className="w-[10%] justify-end mx-3 flex items-center hover:cursor-pointer active:scale-90 transition-all ease-in-out duration-300">
+              <div
+                onClick={() => setSearchTerm("")}
+                className="w-[10%] justify-end mx-3 flex items-center hover:cursor-pointer active:scale-90 transition-all ease-in-out duration-300"
+              >
                 <img className=" w-3 h-3 sm:w-4 sm:h-4" src={close} alt="" />
               </div>
             </div>
@@ -244,10 +246,12 @@ export default function SearchFunc() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div onClick={()=>setSearchTerm('')} className="w-[10%] justify-end mx-3 flex items-center hover:cursor-pointer active:scale-90 transition-all ease-in-out duration-300">
+              <div
+                onClick={() => setSearchTerm("")}
+                className="w-[10%] justify-end mx-3 flex items-center hover:cursor-pointer active:scale-90 transition-all ease-in-out duration-300"
+              >
                 <img className=" w-3 h-3 sm:w-4 sm:h-4" src={close} alt="" />
               </div>
-              
             </div>
           )}
 
