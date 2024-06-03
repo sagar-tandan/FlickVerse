@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
   return (
     <div className="bottom-0 z-10 bg-black/20 backdrop-blur-lg w-full fixed sm:hidden flex h-[50px] items-center justify-center">
-      <div className="w-[80%] flex justify-center items-center gap-10">
+      <div className="w-[70%] flex justify-between items-center">
         <Link to="/">
           <img
             className="w-7 h-7 hover:cursor-pointer active:scale-90 transition-all ease-in-out duration-300"
@@ -31,13 +31,13 @@ export default function NavBar() {
             alt="series"
           />
         </Link>
-        <Link>
+        {/* <Link>
           <img
             className="w-7 h-7 hover:cursor-pointer active:scale-90 transition-all ease-in-out duration-300"
             src={user}
             alt="user"
           />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ export default function HindiNowPlaying() {
         await axios
           .request(options)
           .then(function (response) {
-            console.log(response.data.results);
+            // console.log(response.data.results);
             setNowPlaying(response.data.results);
             setLoading(false);
           })

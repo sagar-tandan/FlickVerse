@@ -38,7 +38,7 @@ export default function TopRated() {
         await axios
           .request(options)
           .then(function (response) {
-            console.log(response.data.results);
+            // console.log(response.data.results);
             setTopRated(response.data.results);
             setLoading(false);
           })

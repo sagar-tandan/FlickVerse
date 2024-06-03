@@ -35,7 +35,7 @@ export default function TvPopular() {
         await axios
           .request(options)
           .then(function (response) {
-            console.log(response.data.results);
+            // console.log(response.data.results);
             setTvPop(response.data.results);
             setLoading(false);
           })

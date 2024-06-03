@@ -76,7 +76,7 @@ export default function PopularMovies() {
   };
 
   return (
-    <div className="flex gap-10 overflow-x-scroll scroll-smooth mt-[50px] sm:mt-[60px] ">
+    <div className="flex gap-10 overflow-x-scroll scroll-smooth mt-[50px] sm:mt-[60px] max-w-screen-2xl mx-auto ">
       {/* mt-[50px] sm:mt-[60px] */}
       <Carousel
         showThumbs={false}

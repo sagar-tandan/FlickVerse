@@ -13,22 +13,22 @@ export default function Home() {
       <Header />
       
       <PopularMovies />
-      <div className="flex flex-col px-5">
+      <div className="flex flex-col px-5 max-w-screen-2xl mx-auto">
         <NowPlaying />
       </div>
 
-      <div className="flex flex-col px-5">
+      <div className="flex flex-col px-5 max-w-screen-2xl mx-auto">
         <OntheAir />
       </div>
-      <div className="flex flex-col px-5">
+      <div className="flex flex-col px-5 max-w-screen-2xl mx-auto">
         <HindiNowPlaying />
       </div>
 
-      <div className="flex flex-col px-5">
+      <div className="flex flex-col px-5 max-w-screen-2xl mx-auto">
         <TvPopular />
       </div>
 
-      <div className="flex flex-col px-5">
+      <div className="flex flex-col px-5 max-w-screen-2xl mx-auto">
         <TopRated />
       </div>
       <NavBar />

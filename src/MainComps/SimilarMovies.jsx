@@ -111,7 +111,7 @@ export default function SimilarMovies({ id, tits }) {
                     >
                       <div
                         key={item.id}
-                        className="rounded-xl w-auto h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden flex-shrink-0"
+                        className="rounded-xl w-[120px] sm:w-[150px] xl:w-[200px] 2xl:w-[300px] 3xl:w-[350px] h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden flex-shrink-0"
                       >
                         {item.poster_path ? (
                           <MovieCard

@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import HamMenu from "./NavBar1.jsx";
 import search from "../../assets/Icons/srch.png";
 import user from "../../assets/Icons/usr.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 export default function Header() {
   const [width, setWidth] = useState(window.innerWidth);
-
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,12 +30,11 @@ export default function Header() {
     if (storedWidth) setWidth(storedWidth);
   }, []);
 
-
-
   return (
     <div className="w-full justify-between z-20 h-[50px] sm:h-[60px] fixed flex backdrop-blur-lg bg-black/20 shadow-stone-800 shadow-md px-3">
+      <div className="w-full justify-between h-full flex max-w-screen-2xl mx-auto">
 
-
+      
       <Link className="flex gap-1 hover:cursor-pointer" to="/">
         <div className="flex gap-1 hover:cursor-pointer items-center">
           <img className="w-7 h-7 sm:w-14 sm:h-14" src={logo} alt="logo" />
@@ -117,9 +115,12 @@ export default function Header() {
           </div>
         )}
 
-        <div className="sm:flex items-center hidden">
-          <img className="w-6 h-6" src={user} alt="" />
-        </div>
+        {/* <div className="sm:flex items-center hidden">
+          <Link to="/login">
+            <img className="w-6 h-6" src={user} alt="" />
+          </Link>
+        </div> */}
+      </div>
       </div>
     </div>
   );

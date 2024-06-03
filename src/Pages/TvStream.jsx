@@ -91,7 +91,7 @@ export default function MovieStream() {
       {/* <div className="relative max-w-screen-5xl h-screen flex justify-center items-center overflow-hidden mx-auto"> */}
       <div className="flex flex-col gap-5 bg-[#0c0c0c] absolute top-0 left-0 right-0 w-full h-full bg-opacity-85 overflow-y-scroll scroll-smooth">
         <Header />
-        <div className="flex flex-col lg:flex-row gap-4 text-white font-poppins w-full p-4 mb-20 mt-[50px] sm:mt-[60px]">
+        <div className="flex flex-col lg:flex-row gap-4 text-white font-poppins w-full p-4 mb-20 mt-[50px] sm:mt-[60px] max-w-screen-2xl mx-auto">
           <div className="flex flex-col w-full lg:w-[80%]">
             <div className="flex flex-row m-2 gap-3 flex-wrap">
               <div
@@ -213,7 +213,7 @@ export default function MovieStream() {
               </div>
 
               {selected && (
-                <div className="absolute w-full left-0 right-0 rounded-xl h-[40vh] p-2 my-4 overflow-y-scroll bg-[#171717] py-4 scrollbar-custom">
+                <div className="absolute w-full left-0 right-0 rounded-xl h-[70vh] p-2 my-4 overflow-y-scroll bg-[#171717] py-4 scrollbar-custom">
                   <div className=" w-full outline-none flex flex-col gap-3 h-full">
                     {seasons.map((item, index) => (
                       <div
@@ -225,7 +225,7 @@ export default function MovieStream() {
                           selectedSeason === item.season_number
                             ? "bg-blue-600 hover:bg-blue-700"
                             : " hover:bg-[#4b4b4b]"
-                        }  p-3 py-4 px-4 rounded-full hover:cursor-pointer scrollbar-default active:scale-95 transition-all ease-in-out duration-300 truncate`}
+                        }  p-3 py-3 px-4 rounded-full hover:cursor-pointer scrollbar-default active:scale-95 transition-all ease-in-out duration-300 truncate`}
                       >
                         {item.name}
                       </div>

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import prev from "../../assets/Icons/prev.png";
 import next from "../../assets/Icons/next.png";
+import notF from "../../assets/4044.png";
 
 export default function SimilarTV({ id, tits }) {
   const sliderRef = useRef(null);
@@ -34,7 +35,7 @@ export default function SimilarTV({ id, tits }) {
         axios
           .request(options)
           .then(function (response) {
-            console.log(response.data.results);
+            // console.log(response.data.results);
             setSimilar(response.data.results);
             setLoading(false);
           })
@@ -111,13 +112,21 @@ export default function SimilarTV({ id, tits }) {
                     >
                       <div
                         key={item.id}
-                        className="rounded-xl w-auto h-[150px] sm:h-[200px] overflow-hidden flex-shrink-0"
+                        className="rounded-xl w-[120px] sm:w-[150px] xl:w-[200px] 2xl:w-[300px] 3xl:w-[350px] h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden flex-shrink-0"
                       >
-                        <MovieCard
-                          key={item.id}
-                          url={`https://image.tmdb.org/t/p/w185${item.poster_path}`}
-                          title={item.title}
-                        />
+                        {item.poster_path ? (
+                          <MovieCard
+                            key={item.id}
+                            url={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+                            title={item.title}
+                          />
+                        ) : (
+                          <MovieCard
+                            key={item.id}
+                            url={notF}
+                            title={item.title}
+                          />
+                        )}
                       </div>
                     </a>
                   ))}

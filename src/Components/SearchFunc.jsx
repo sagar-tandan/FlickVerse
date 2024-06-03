@@ -7,7 +7,7 @@ import AllMovieCard from "./AllMovieCard.jsx";
 import BeatLoader from "react-spinners/BeatLoader";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import user from "../assets/Icons/usr.png";
+import close from "../assets/Icons/close.png";
 
 export default function SearchFunc() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -118,6 +118,7 @@ export default function SearchFunc() {
 
         setNowPlaying(movieResponse.data.results);
         setTvShows(tvShowResponse.data.results);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       } finally {
@@ -161,93 +162,106 @@ export default function SearchFunc() {
   };
 
   return (
-    <div className="text-white font-poppins text-md flex flex-col pb-10">
-      <div className={`w-full gap-10 sm:justify-between z-20 h-[50px] sm:h-[60px] fixed flex backdrop-blur-sm bg-black/20 shadow-stone-800 shadow-md px-3`}>
-        {width > 300 && (
-          <Link className="flex gap-1 hover:cursor-pointer" to="/">
-            <div className="flex gap-1 hover:cursor-pointer items-center">
-              <img className="w-7 h-7 sm:w-14 sm:h-14" src={logo} alt="logo" />
-              <div className="flex items-center">
-                <h1 className="font-poppins font-semibold text-sm sm:text-xl lg:text-2xl text-[#1250f3]">
-                  𝑭𝑳𝑰𝑪𝑲
-                </h1>
-                <h1 className="font-poppins font-semibold text-sm sm:text-xl lg:text-2xl italic text-yellow-500">
-                  Λ
-                </h1>
-                <h1 className="font-poppins font-semibold text-sm sm:text-xl lg:text-2xl text-[#49cbff]">
-                  𝑬𝑹𝑺𝑬
-                </h1>
+    <div className="text-white font-poppins text-md flex flex-col pb-10 mx-auto max-w-screen-2xl">
+      <div
+        className={`w-full gap-10 sm:justify-between z-20 h-[50px] sm:h-[60px] fixed flex backdrop-blur-sm bg-black/20 shadow-stone-800 shadow-md px-3`}
+      >
+        <div className="flex justify-between max-w-screen-2xl h-full w-full">
+          {width > 500 && (
+            <Link className="flex gap-1 hover:cursor-pointer" to="/">
+              <div className="flex gap-1 hover:cursor-pointer items-center">
+                <img
+                  className="w-7 h-7 sm:w-14 sm:h-14"
+                  src={logo}
+                  alt="logo"
+                />
+                <div className="flex items-center">
+                  <h1 className="font-poppins font-semibold text-sm sm:text-xl lg:text-2xl text-[#1250f3]">
+                    𝑭𝑳𝑰𝑪𝑲
+                  </h1>
+                  <h1 className="font-poppins font-semibold text-sm sm:text-xl lg:text-2xl italic text-yellow-500">
+                    Λ
+                  </h1>
+                  <h1 className="font-poppins font-semibold text-sm sm:text-xl lg:text-2xl text-[#49cbff]">
+                    𝑬𝑹𝑺𝑬
+                  </h1>
+                </div>
+              </div>
+            </Link>
+          )}
+
+          {width > 500 ? (
+            <div className="border-[0.5px] w-[60%] bg-[#0c0c0c] border-[#2f2f2f] rounded-full m-2 flex justify-between">
+              <div className="flex gap-3 justify-start items-center px-3 w-full">
+                <img
+                  className=" w-3 h-3 sm:w-5 sm:h-5"
+                  src={search}
+                  alt="search"
+                />
+                <input
+                  ref={inputRef1}
+                  className="w-full outline-none bg-transparent text-white text-sm font-poppins font-light hidden sm:inline-block"
+                  type="text"
+                  placeholder="Search Movies/Series"
+                  value={searchTerm}
+                  onChange={handleInputChange}
+                />
+                <input
+                  ref={inputRef2}
+                  className="w-full outline-none bg-transparent text-white text-sm font-poppins font-light inline-block sm:hidden"
+                  type="text"
+                  placeholder="Search"
+                  value={searchTerm}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div onClick={()=>setSearchTerm('')} className="w-[10%] justify-end mx-3 flex items-center hover:cursor-pointer active:scale-90 transition-all ease-in-out duration-300">
+                <img className=" w-3 h-3 sm:w-4 sm:h-4" src={close} alt="" />
               </div>
             </div>
-          </Link>
-        )}
-
-        {width > 300 ? (
-          <div className="border-[0.5px] w-[45%] sm:w-[50%] xl:w-[40%] 2xl:w-[20%] bg-[#0c0c0c] border-[#2f2f2f] rounded-full m-2 flex justify-between">
-            <div className="flex gap-3 justify-start items-center px-3">
-              <img
-                className=" w-3 h-3 sm:w-5 sm:h-5"
-                src={search}
-                alt="search"
-              />
-              <input
-                ref={inputRef1}
-                className="outline-none bg-transparent text-white text-sm font-poppins font-light hidden sm:inline-block"
-                type="text"
-                placeholder="Search Movies/Series"
-                value={searchTerm}
-                onChange={handleInputChange}
-              />
-              <input
-                ref={inputRef2}
-                className="outline-none bg-transparent text-white text-sm font-poppins font-light inline-block sm:hidden"
-                type="text"
-                placeholder="Search"
-                value={searchTerm}
-                onChange={handleInputChange}
-              />
+          ) : (
+            <div className="border-[0.5px] w-full bg-[#0c0c0c] border-[#2f2f2f] rounded-full m-2 flex justify-between">
+              <div className="flex gap-3 justify-start items-center px-3 w-full">
+                <img
+                  className=" w-3 h-3 sm:w-5 sm:h-5"
+                  src={search}
+                  alt="search"
+                />
+                <input
+                  ref={inputRef1}
+                  className="w-full outline-none bg-transparent text-white text-sm font-poppins font-light hidden sm:inline-block"
+                  type="text"
+                  placeholder="Search Movies/Series"
+                  value={searchTerm}
+                  onChange={handleInputChange}
+                />
+                <input
+                  ref={inputRef2}
+                  className="w-full outline-none bg-transparent text-white text-sm font-poppins font-light inline-block sm:hidden"
+                  type="text"
+                  placeholder="Search"
+                  value={searchTerm}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div onClick={()=>setSearchTerm('')} className="w-[10%] justify-end mx-3 flex items-center hover:cursor-pointer active:scale-90 transition-all ease-in-out duration-300">
+                <img className=" w-3 h-3 sm:w-4 sm:h-4" src={close} alt="" />
+              </div>
+              
             </div>
-          </div>
-        ) : (
-          <div className="border-[0.5px] w-full bg-[#0c0c0c] border-[#2f2f2f] rounded-full m-2 flex justify-between">
-            <div className="flex gap-3 justify-start items-center px-3">
-              <img
-                className=" w-3 h-3 sm:w-5 sm:h-5"
-                src={search}
-                alt="search"
-              />
-              <input
-                ref={inputRef1}
-                className="outline-none bg-transparent text-white text-sm font-poppins font-light hidden sm:inline-block"
-                type="text"
-                placeholder="Search Movies/Series"
-                value={searchTerm}
-                onChange={handleInputChange}
-              />
-              <input
-                ref={inputRef2}
-                className="outline-none bg-transparent text-white text-sm font-poppins font-light inline-block sm:hidden"
-                type="text"
-                placeholder="Search"
-                value={searchTerm}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-        )}
+          )}
 
-        <div className=" hidden sm:flex items-center">
-          <img className="w-6 h-6" src={user} alt="" />
+          <div className="w-6 h-6 hidden sm:flex items-center"></div>
         </div>
       </div>
 
       {searchTerm.length > 0 && (
-        <div className="flex flex-row mt-20 mx-4 gap-1 justify-start items-center flex-wrap">
-          <span className="text-sm sm:text-md font-poppins font-light sm:font-medium">
+        <div className="flex flex-row mt-20 gap-1 flex-wrap mx-4">
+          <span className="text-sm sm:text-lg font-poppins font-light sm:font-medium">
             Search Results for:{" "}
           </span>
-          <span className="text-orange-500 text-sm sm:text-md font-poppins font-light sm:font-medium tracking-wide">
-            {searchTerm}
+          <span className="text-orange-500 text-sm sm:text-lg font-poppins font-light sm:font-medium tracking-wide">
+            '{searchTerm}'
           </span>
         </div>
       )}
@@ -262,9 +276,13 @@ export default function SearchFunc() {
             <div className="flex flex-col">
               {nowPlaying.length > 0 && (
                 <div>
-                  <h1 className="mx-4 font-poppins mt-8 font-medium text-lg">
-                    Movies
-                  </h1>
+                  <div className="mx-4 flex items-center gap-1 font-poppins mt-8 font-medium text-lg">
+                    <div className="w-full bg-orange-500 h-[1px]"></div>
+                    <h1 className="sm:text-xl font-semibold tracking-wider">
+                      Movies
+                    </h1>
+                    <div className="w-full bg-orange-500 h-[1px]"></div>
+                  </div>
 
                   <div className="flex flex-wrap gap-5 sm:gap-10 mt-4 justify-center mx-4 items-center">
                     {nowPlaying.map((movie) => (
@@ -297,9 +315,13 @@ export default function SearchFunc() {
 
               {tvShows.length > 0 && (
                 <div>
-                  <h1 className="mx-4 font-poppins mt-8 font-medium text-lg">
-                    Series
-                  </h1>
+                  <div className="mx-4 flex items-center gap-1 font-poppins mt-8 font-medium text-lg">
+                    <div className="w-full bg-orange-500 h-[1px]"></div>
+                    <h1 className="sm:text-xl font-semibold tracking-wider">
+                      Series
+                    </h1>
+                    <div className="w-full bg-orange-500 h-[1px]"></div>
+                  </div>
 
                   <div className="flex flex-wrap gap-5 sm:gap-10 mt-4 justify-center mx-4 items-center">
                     {tvShows.map((movie) => (
