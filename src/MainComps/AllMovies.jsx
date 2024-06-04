@@ -118,7 +118,7 @@ export default function AllMovies() {
   const handleLinkClick = (movie, event) => {
     event.preventDefault();
     setTimeout(() => {
-      navigate(`/${movie.title}`, {
+      navigate(`/movie/${movie.id}`, {
         state: {
           title: movie.title,
           id: movie.id,
@@ -182,7 +182,7 @@ export default function AllMovies() {
                   <div className="rounded-xl w-auto h-[150px] sm:h-[200px] xl:h-[300px] 2xl:h-[350px] 3xl:h-[400px] overflow-hidden">
                     <AllMovieCard
                       key={movie.id}
-                      url={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
+                      url={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                       title={movie.title}
                     />
                   </div>

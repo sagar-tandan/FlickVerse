@@ -50,7 +50,7 @@ export default function MovieDetail() {
   const handleLinkClick = (ids, mainId, event) => {
     event.preventDefault();
     setTimeout(() => {
-      navigate(`/${title}/${mainId}`, {
+      navigate(`/player/movie/${mainId}`, {
         state: {
           id: ids,
           id2: mainId,

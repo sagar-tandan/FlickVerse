@@ -59,7 +59,7 @@ export default function TvPopular() {
   const handleLinkClick = (movie, event) => {
     event.preventDefault(); // Prevent default navigation
     setTimeout(() => {
-      navigate(`/tv/${movie.original_name}`, {
+      navigate(`/tv/${movie.id}`, {
         state: {
           title: movie.original_name,
           id: movie.id,

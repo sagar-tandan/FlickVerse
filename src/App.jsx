@@ -15,9 +15,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:title" element={<MovieDetail />} />
-        <Route path="/:title/:ids" element={<MovieStream />} />
-        <Route path="/tv/:title/:ids" element={<TvStream />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
+        <Route path="/player/movie/:ids" element={<MovieStream />} />
+        <Route path="/player/tv/:ids" element={<TvStream />} />
         <Route path="/tv/:title" element={<TvDetail />} />
         <Route path="/flick" element={<Flick />} />
         <Route path="/search" element={<SearchFunc />} />

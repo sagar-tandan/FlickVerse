@@ -64,7 +64,7 @@ export default function HindiNowPlaying() {
   const handleLinkClick = (movie, event) => {
     event.preventDefault(); // Prevent default navigation
     setTimeout(() => {
-      navigate(`/${movie.title}`, {
+      navigate(`/movie/${movie.id}`, {
         state: {
           title: movie.title,
           id: movie.id,

@@ -32,7 +32,7 @@ export default function SimilarMovies({ id, tits }) {
         axios
           .request(options)
           .then(function (response) {
-            console.log(response.data.results);
+            // console.log(response.data.results);
             setSimilar(response.data.results);
             setLoading(false);
           })
@@ -57,7 +57,7 @@ export default function SimilarMovies({ id, tits }) {
   const handleLinkClick = (movie, event) => {
     event.preventDefault(); // Prevent default navigation
     setTimeout(() => {
-      navigate(`/${movie.title}`, {
+      navigate(`/movie/${movie.id}`, {
         state: {
           title: movie.title,
           id: movie.id,

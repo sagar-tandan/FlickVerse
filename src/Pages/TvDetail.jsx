@@ -54,7 +54,7 @@ export default function TvDetail() {
   const handleLinkClick = (mainId, seasons, event) => {
     event.preventDefault();
     setTimeout(() => {
-      navigate(`/tv/${title}/${mainId}`, {
+      navigate(`/player/tv/${mainId}`, {
         state: {
           id2: mainId,
           season: seasons,
