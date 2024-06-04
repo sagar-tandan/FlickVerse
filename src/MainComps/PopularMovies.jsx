@@ -119,7 +119,7 @@ export default function PopularMovies() {
                     <h1>{movie?.vote_average.toFixed(1)}</h1>
                     <div className="flex justify-center items-center">
                       <img
-                        className="w-4 h-4 xl:w-6 xl:h-6"
+                        className="w-4 h-4 xl:w-7 xl:h-7"
                         src={star}
                         alt="star"
                       />
