@@ -51,7 +51,7 @@ export default function TvDetail() {
   const cast = cred?.cast?.slice(0, 3).map((member) => member.name);
   const dir = details?.created_by?.slice(0, 1).map((member) => member.name);
 
-  const handleLinkClick = ( mainId, seasons, event) => {
+  const handleLinkClick = (mainId, seasons, event) => {
     event.preventDefault();
     setTimeout(() => {
       navigate(`/tv/${title}/${mainId}`, {
@@ -178,13 +178,7 @@ export default function TvDetail() {
               <div className="flex gap-6 mt-2 flex-col sm:flex-row justify-between w-full md:w-[80%] xl:w-[60%] 2xl:w-[50%]">
                 <a
                   className="w-[80%] sm:w-full mx-auto flex justify-center items-center bg-blue-600 text-sm sm:text-lg font-medium py-2 px-3 sm:px-6 rounded-full opacity-100 hover:bg-blue-800 transition-all ease-in-out duration-300 active:scale-[105%] hover:text-yellow-400"
-                  onClick={(event) =>
-                    handleLinkClick(
-                      id,
-                      seasons,
-                      event
-                    )
-                  }
+                  onClick={(event) => handleLinkClick(id, seasons, event)}
                 >
                   <button className="w-full ">Play Now</button>
                 </a>
@@ -209,6 +203,8 @@ export default function TvDetail() {
           <div className="w-full max-w-screen-2xl mx-auto">
             <SimilarTV id={id} tits={title} />
           </div>
+          {/* Recommended Movies */}
+
           <div className="w-full max-w-screen-2xl mx-auto">
             <ReccomTV id={id} />
           </div>
