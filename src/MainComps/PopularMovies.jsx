@@ -92,7 +92,9 @@ export default function PopularMovies() {
           <div className="relative w-full h-[350px] xl:h-[400px] 2xl:h-[500px] 3xl:h-[600px]">
             <img
               className="w-full h-[350px] xl:h-[400px] 2xl:h-[500px] 3xl:h-[600px] rounded brightness-[30%] object-cover"
-              src={`https://image.tmdb.org/t/p/${width > 780 ? "original": "w780"}${movie.backdrop_path}`}
+              src={`https://image.tmdb.org/t/p/${
+                width > 780 ? "original" : "w780"
+              }${movie.backdrop_path}`}
               alt=""
             />
             <div className="absolute flex flex-row top-0 bottom-0 left-0 right-0">
@@ -101,7 +103,7 @@ export default function PopularMovies() {
                   {movie.title}
                 </h1>
 
-                <div className="flex gap-5 justify-start items-center mb-1 sm:mb-4 xl:text-2xl">
+                <div className="flex gap-5 justify-start items-center mb-1 sm:mb-4 xl:text-2xl w-full flex-wrap">
                   {movie?.adult === false ? (
                     <span className="bg-[#d4d4d4] px-3 rounded-lg text-black xl:text-2xl font-semibold">
                       13+
@@ -115,7 +117,13 @@ export default function PopularMovies() {
                   <span>{movie?.release_date.split("-")[0]}</span>
                   <span className="flex gap-1">
                     <h1>{movie?.vote_average.toFixed(1)}</h1>
-                    <img className="w-5 h-5 xl:w-7 xl:h-7 " src={star} alt="" />
+                    <div className="flex justify-center items-center">
+                      <img
+                        className="w-4 h-4 xl:w-6 xl:h-6"
+                        src={star}
+                        alt="star"
+                      />
+                    </div>
                   </span>
                 </div>
 
@@ -123,15 +131,15 @@ export default function PopularMovies() {
                   <p className=" font-poppins text-sm lg:text-lg font-light text-left 2xl:text-xl 3xl:text-2xl">
                     {width <= 390 ? (
                       <p>{movie?.overview.slice(0, 180) + "..."}</p>
-                    ) : width > 390 && width < 500? (
+                    ) : width > 390 && width < 500 ? (
                       <p>{movie?.overview.slice(0, 200) + "..."}</p>
                     ) : width > 500 && width < 1000 ? (
                       <p>{movie?.overview.slice(0, 280) + "..."}</p>
-                    ): width > 1000 && movie.overview.length > 400  ? (
+                    ) : width > 1000 && movie.overview.length > 400 ? (
                       <p>{movie?.overview.slice(0, 350) + "..."}</p>
-                    ):width > 1000 && movie.overview.length < 400  ? (
+                    ) : width > 1000 && movie.overview.length < 400 ? (
                       <p>{movie?.overview}</p>
-                    ):(
+                    ) : (
                       <div></div>
                     )}
                   </p>
