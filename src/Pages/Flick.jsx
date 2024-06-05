@@ -63,16 +63,6 @@ export default function Flick() {
           <p className="text-sm text-red-500 mt-2">
             Also try switching servers if the movie or TV Show is not available in one server.
           </p>
-
-          {/* <p className="text-sm text-[#c1c1c1] mt-2">
-            Watch the video below to learn how to switch to a different server.
-          </p>
-          <div className="mt-5">Video goes here!!!!</div>
-          <div className="mt-5">Video goes here!!!!</div>
-          <div className="mt-5">Video goes here!!!!</div>
-          <div className="mt-5">Video goes here!!!!</div>
-          <div className="mt-5">Video goes here!!!!</div>
-          <div className="mt-5">Video goes here!!!!</div> */}
         </div>
 
         <h1 className="font-poppins text-yellow-500 font-medium mt-5">NOTE : <span className="text-red-600">This site is made only for educational purpose.</span></h1>
